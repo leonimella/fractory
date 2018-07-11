@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -9,36 +11,39 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class CheckImporterRouteTest extends TestCase
 {
     /**
-     * Test our application's routes.
+     * Test our application's home.
      *
      * @return void
      */
-    public function testRoutes()
+    public function testHomeroute()
     {
         $home = $this->get('/');
         $home->assertStatus(200);
-
-        $importer = $this->get('/importer');
-        $importer->assertStatus(200);
     }
 
     /**
-     * Test the storage of file
+     * Test the storage, the parsing and HTTP status
      *
      * @return void
      */
-    public function testImporter()
+    public function testCSVImportFeature()
     {
-        //
-    }
+        Storage::fake('imported');
+        $response = $this->json('POST', '/importer', [
+            'file' => UploadedFile::fake()->create('data.csv'),
+        ]);
 
-    /**
-     * Test the method that parses the CSV file
-     *
-     * @return void
-     */
-    public function testCSVParser()
-    {
-        //
+        $response->assertStatus(201);
+
+        Storage::disk('imported')->exists('data.csv');
+
+        $this->assertDatabaseHas('orders', [
+            'name' => '',
+            'qty' => '',
+            'thickness' => '',
+            'material' => '',
+            'bending' => '',
+            'threading' => ''
+        ]);
     }
 }
