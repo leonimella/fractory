@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('qty');
             $table->float('thickness');
             $table->string('material');
-            $table->float('bending');
-            $table->float('threading');
+            $table->boolean('bending')->nullable();
+            $table->boolean('threading')->nullable();
             $table->timestamps();
         });
     }
