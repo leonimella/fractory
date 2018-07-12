@@ -30,21 +30,49 @@ class CSVImporterTest extends TestCase
     public function testCSVImportFeature()
     {
         Storage::fake('imported');
-        $response = $this->json('POST', '/importer', [
+        $response = $this->json('POST', '/api/importer/csv', [
             'file' => UploadedFile::fake()->create('data.csv'),
         ]);
 
-        $response->assertStatus(201);
-
+        $response->assertStatus(200);
         Storage::disk('imported')->exists('data.csv');
-
-        $this->assertDatabaseHas('orders', [
-            'name' => '',
-            'qty' => '',
-            'thickness' => '',
-            'material' => '',
-            'bending' => '',
-            'threading' => ''
+        $response->assertJsonStructure([
+            'data' => [],
+            'links' => []
         ]);
+    }
+
+    public function testOrdersCreationRoute()
+    {
+        $data = [
+            [
+                'bending' => '',
+                'material' => 'S235',
+                'name' => '100965--',
+                'qty' => '3',
+                'thickness' => '12',
+                'threading' => 'Yes'
+            ],
+            [
+                'bending' => 'Yes',
+                'material' => 'S235',
+                'name' => '100954--',
+                'qty' => '2',
+                'thickness' => '5',
+                'threading' => ''
+            ],
+            [
+                'bending' => '',
+                'material' => 'S235',
+                'name' => '100962--',
+                'qty' => '5',
+                'thickness' => '1',
+                'threading' => ''
+            ]
+        ];
+
+        $response = $this->json('POST', '/api/order', $data);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('orders', $data);
     }
 }
