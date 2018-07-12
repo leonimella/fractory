@@ -29,14 +29,13 @@ export default class FileUpload extends Component {
     sendFile(e) {
         e.preventDefault();
         const url = e.target.getAttribute('action'),
+            file = this.state.file,
             data = new FormData(),
-            config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            };
-        data.append('file', this.state.file);
-        axios.put(url, data, config)
+            config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
+        data.append('file[]', file, file.name);
+
+        axios.put(url, data)
             .then((response) => {
                 console.log(response);
             })
@@ -48,14 +47,17 @@ export default class FileUpload extends Component {
 
     render() {
         return (
-            <form action={`${window.origin}/api/importer/csv`} onSubmit={(e) => {this.sendFile(e)}}>
+            <form
+                action={`${window.origin}/api/importer/csv`}
+                onSubmit={(e) => {this.sendFile(e)}}
+            >
                 <div className="input-group mb-3">
                     <div className="custom-file">
                         <input
                             type="file"
                             className="custom-file-input"
                             id="file"
-                            name="file"
+                            name="file[]"
                             required
                             onChange={ (e) => {this.setFile(e.target)} }
                         />
