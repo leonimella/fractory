@@ -6,35 +6,49 @@ export default class FileUpload extends Component {
         super(props);
 
         this.state = {
-            fileName: null,
-        }
+            file: null
+        };
+
+        this.sendFile = this.sendFile.bind(this);
     }
 
     getFileName() {
-        const fileName = this.state.fileName;
+        const file = this.state.file;
 
-        if (!fileName) {
+        if (!file) {
             return 'Choose File';
         }
-
-        return fileName
+        return file.name;
     }
 
-    setFileName(input) {
-        const inputValue = input.value,
-            filePath = inputValue.split('\\'),
-            fileName = filePath[filePath.length -1];
-
-        this.setState({ fileName });
+    setFile(input) {
+        const file = input.files[0];
+        this.setState({ file });
     }
 
-    sendFile() {
-        // WIP
+    sendFile(e) {
+        e.preventDefault();
+        const url = e.target.getAttribute('action'),
+            data = new FormData(),
+            config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            };
+        data.append('file', this.state.file);
+        axios.put(url, data, config)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                alert('Ops, it\'s not possible to continue with your request, try again later');
+                console.log(error);
+            });
     }
 
     render() {
         return (
-            <form>
+            <form action={`${window.origin}/api/importer/csv`} onSubmit={(e) => {this.sendFile(e)}}>
                 <div className="input-group mb-3">
                     <div className="custom-file">
                         <input
@@ -42,7 +56,8 @@ export default class FileUpload extends Component {
                             className="custom-file-input"
                             id="file"
                             name="file"
-                            onChange={ (e) => {this.setFileName(e.target)} }
+                            required
+                            onChange={ (e) => {this.setFile(e.target)} }
                         />
                         <label className="custom-file-label" htmlFor="file">{ this.getFileName() }</label>
                     </div>
