@@ -37,7 +37,7 @@ export default class FileUpload extends Component {
 
         axios.post(url, data, config)
             .then((response) => {
-                console.log(response);
+                this.props.onFileSubmitted(response.data.data); // Callback from parent component
             })
             .catch((error) => {
                 alert('Ops, it\'s not possible to continue with your request, try again later');
