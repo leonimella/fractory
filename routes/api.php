@@ -12,3 +12,4 @@
 */
 
 Route::post('/importer/csv', 'API\ImporterController@handleCSVFile');
+Route::post('/orders/create', 'API\OrdersController@store');
