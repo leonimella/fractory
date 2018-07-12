@@ -17,8 +17,6 @@ class CSVService {
         $csvData = $csv->fetchAll();
         $data = [];
 
-        unset($csvData[0]); // Removing headers
-
         foreach ($csvData as $singleData) {
             $row = [];
             foreach ($csvHeaders as $csvHeaderKey => $csvHeaderColumn) {
