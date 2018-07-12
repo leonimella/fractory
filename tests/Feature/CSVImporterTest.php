@@ -23,7 +23,7 @@ class CSVImporterTest extends TestCase
     }
 
     /**
-     * Test the storage, the parsing and HTTP status
+     * Test the CSV file parsing and HTTP status
      *
      * @return void
      */
@@ -42,6 +42,11 @@ class CSVImporterTest extends TestCase
         ]);
     }
 
+    /**
+     * Test the creation of new orders
+     *
+     * @return void
+     */
     public function testOrdersCreationRoute()
     {
         $data = [
