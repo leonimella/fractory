@@ -7,10 +7,8 @@
 
         <title>Fractory CSV Importer</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
     </head>
     <body>
         <div id="importer-app"></div>
