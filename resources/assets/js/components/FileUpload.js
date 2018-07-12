@@ -33,9 +33,9 @@ export default class FileUpload extends Component {
             data = new FormData(),
             config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
-        data.append('file[]', file, file.name);
+        data.append('file', file, file.name);
 
-        axios.put(url, data)
+        axios.post(url, data, config)
             .then((response) => {
                 console.log(response);
             })
@@ -57,7 +57,7 @@ export default class FileUpload extends Component {
                             type="file"
                             className="custom-file-input"
                             id="file"
-                            name="file[]"
+                            name="file"
                             required
                             onChange={ (e) => {this.setFile(e.target)} }
                         />
