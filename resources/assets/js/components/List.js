@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-export default class OrdersList extends Component {
-    constructor(props) {
-        super(props);
-    }
+export default class List extends Component {
 
     renderTableHead(list) {
         const tableHead = list.shift();

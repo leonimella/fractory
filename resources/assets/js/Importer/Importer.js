@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
 import FileUpload from '../components/FileUpload';
-import OrdersList from '../components/OrdersList';
+import List from '../components/List';
+import SubmitOrders from './SubmitOrders';
 
 const container = document.getElementById('importer-app');
 
@@ -19,7 +21,8 @@ class Importer extends Component {
             <div className="container">
                 <h1>Select a File to Upload</h1>
                 <FileUpload onFileSubmitted={(list) => {this.setState({ list })}} />
-                <OrdersList list={this.state.list}/>
+                <List list={this.state.list}/>
+                <SubmitOrders orders={this.state.list}/>
             </div>
         )
     }
