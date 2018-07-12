@@ -8,7 +8,7 @@ export default class SubmitOrders extends Component{
         const url = e.target.getAttribute('action'),
             orders = this.props.orders;
 
-        axios.post(url, orders)
+        axios.post(url, { orders })
             .then((response) => {
                 console.log(response);
             })
