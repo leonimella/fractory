@@ -5,11 +5,12 @@ namespace Tests\Feature;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CheckImporterRouteTest extends TestCase
+class CSVImporterTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test our application's home.
      *
