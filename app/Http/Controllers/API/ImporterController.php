@@ -28,7 +28,7 @@ class ImporterController extends Controller
             return response()->json([
                 'data' => [
                     'message' => 'File parsed successfully, here are your orders.',
-                    'status' => 'success',
+                    'status' => 'info',
                     'orders' => $fileData
                 ],
                 'links' => [
