@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Fractory CSV Importer</title>
+        <title>CSV Parser</title>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600" type="text/css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
