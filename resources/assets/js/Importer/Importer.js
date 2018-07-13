@@ -24,7 +24,10 @@ class Importer extends Component {
                 <h1>Select a File to Upload</h1>
                 <FileUpload onFileSubmitted={(list, feedback) => {this.setState({ list, feedback })}} />
                 <Feedback feedback={this.state.feedback}/>
-                <List list={this.state.list}/>
+                <List
+                    list={this.state.list}
+                    feedback={this.state.feedback}
+                />
                 <SubmitOrders
                     orders={this.state.list}
                     onOrdersSubmitted={(list, feedback) => {this.setState({ list, feedback })}}
