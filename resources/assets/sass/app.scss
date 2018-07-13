@@ -7,3 +7,34 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+header {
+
+    padding: 20px;
+
+    h1,p {
+        text-align: center;
+    }
+
+}
+
+.table-striped {
+
+    tbody {
+
+        tr:nth-of-type(even) {
+            background-color: #fff
+        }
+
+    }
+
+}
+
+.row.align-items-center {
+    margin-top: 2%;
+}
+
+body .btn-success {
+    background-color: #65d47e;
+    border-color: #65d47e;
+}

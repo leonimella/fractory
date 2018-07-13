@@ -40,7 +40,7 @@ class OrdersController extends Controller
 
         return response()->json([
             'error' => [
-                'message' => 'Some of these orders may be with wrong data, please check',
+                'message' => 'Some of these orders may be with wrong data, please correct than and send again',
                 'status' => 'danger',
                 'orders' => $ordersWithErrors
             ],

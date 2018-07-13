@@ -31,17 +31,30 @@ class Importer extends Component {
     render() {
         return (
             <div className="container">
-                <h1>Select a File to Upload</h1>
-                <FileUpload onFileSubmitted={(list, feedback) => {this.setState({ list, feedback })}} />
-                <Feedback feedback={this.state.feedback}/>
+                <header>
+                    <h1>CSV Parser</h1>
+                    <p>Select a .csv file and hit the <b>Send</b> button. We will parse the file and show the orders contained in the file.</p>
+                </header>
+                <div className="row justify-content-md-center">
+                    <div className="col-md-6">
+                        <FileUpload onFileSubmitted={(list, feedback) => {this.setState({ list, feedback })}} />
+                    </div>
+                </div>
+                <div className="row align-items-center">
+                    <div className="col-10">
+                        <Feedback feedback={this.state.feedback}/>
+                    </div>
+                    <div className="col-2">
+                        <SubmitOrders
+                            orders={this.state.list}
+                            onOrdersSubmitted={(list, feedback) => {this.setState({ list, feedback })}}
+                        />
+                    </div>
+                </div>
                 <List
                     list={this.state.list}
                     feedback={this.state.feedback}
                     onRepair={(inputValue, inputName, tableRow) => {this.handleRepairData(inputValue, inputName, tableRow)}}
-                />
-                <SubmitOrders
-                    orders={this.state.list}
-                    onOrdersSubmitted={(list, feedback) => {this.setState({ list, feedback })}}
                 />
             </div>
         )
