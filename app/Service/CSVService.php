@@ -3,9 +3,17 @@
 namespace App\Service;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
 
 class CSVService {
+
+    /**
+     * Parse the CSV file and return the data from it
+     *
+     * @param UploadedFile $file
+     * @return array
+     */
     public function getCSVFileData(UploadedFile $file): array
     {
         $path = $file->storeAs(
@@ -26,6 +34,8 @@ class CSVService {
 
             $data[] = $row;
         }
+
+        Storage::delete('/' . $path); // Deleting the file after getting the data
 
         return $data;
     }
