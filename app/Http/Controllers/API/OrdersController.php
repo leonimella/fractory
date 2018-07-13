@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Order;
 use App\Service\OrderService;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,17 +24,29 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $orders = $request->get('orders');
-        $newOrder = new Order;
+        $ordersWithErrors = $this->orderService->createOrders($orders);
 
-        try {
-            foreach ($orders as $order) {
-                $newOrder->fill($order);
-                $newOrder->save();
-            }
-        } catch (QueryException $e) {
-            $this->orderService->getNotNullableColumn($e);
+        if (empty($ordersWithErrors)) {
+            return response()->json([
+                'data' => [
+                    'message' => 'Orders created successfully!',
+                    'status' => 'sucess'
+                ],
+                'links' => [
+                    'self' => $request->fullUrl(),
+                ],
+            ], 201);
         }
 
-        return response()->json($request->all(), 201);
+        return response()->json([
+            'error' => [
+                'message' => 'Some of these orders may be with wrong data, please check',
+                'status' => 'danger',
+                'orders' => $ordersWithErrors
+            ],
+            'links' => [
+                'self' => $request->fullUrl(),
+            ],
+        ], 400);
     }
 }

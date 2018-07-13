@@ -7,14 +7,26 @@ use Illuminate\Database\QueryException;
 
 class OrderService {
 
-    public function getNotNullableColumn(QueryException $exception)
+    /**
+     * Create orders and returns orders with errors
+     *
+     * @param $orders
+     * @return array
+     */
+    public function createOrders($orders): array
     {
-        $errorInfo = $exception->errorInfo[2];
-        if (strpos($errorInfo, 'NULL')) {
-            $errorInfo = explode(':', $errorInfo);
-            $errorInfo[1] = str_replace($errorInfo[1], ' orders', '');
-            $nullColumn = $errorInfo[1];
-            dd($nullColumn);
+        $newOrder = new Order;
+        $ordersWithErrors = [];
+
+        foreach ($orders as $order) {
+            try {
+                $newOrder->fill($order);
+                $newOrder->save();
+            } catch (QueryException $e) {
+                $ordersWithErrors[] = $order;
+            }
         }
+
+        return $ordersWithErrors;
     }
 }
