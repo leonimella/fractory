@@ -53,7 +53,7 @@ export default class List extends Component {
         return Object.keys(tableHead).map((propertyKey, index) => {
 
             if (feedback && feedback.status === 'danger') {
-                // return <ListRepair key={index} keyProps={key} propertyKey={propertyKey} />
+                return <ListRepair key={index} keyProps={key} propertyKey={propertyKey} />
             }
 
             return <td key={index}>{key[propertyKey]}</td>
