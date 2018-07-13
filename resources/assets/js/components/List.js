@@ -40,20 +40,29 @@ export default class List extends Component {
             return list.map((key, index) => {
                 return (
                     <tr key={index}>
-                        {this.renderTableCells(key, tableHead)}
+                        {this.renderTableCells(index, key, tableHead)}
                     </tr>
                 )
             });
         }
     }
 
-    renderTableCells(key, tableHead) {
-        const feedback = this.props.feedback;
+    renderTableCells(rowKey, key, tableHead) {
+        const feedback = this.props.feedback,
+            onRepair = this.props.onRepair;
 
         return Object.keys(tableHead).map((propertyKey, index) => {
 
             if (feedback && feedback.status === 'danger') {
-                return <ListRepair key={index} keyProps={key} propertyKey={propertyKey} />
+                return (
+                    <ListRepair
+                        key={index}
+                        row={rowKey}
+                        keyProps={key}
+                        propertyKey={propertyKey}
+                        onInputRepair={onRepair}
+                    />
+                );
             }
 
             return <td key={index}>{key[propertyKey]}</td>

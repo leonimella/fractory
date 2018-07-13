@@ -31,14 +31,20 @@ export default class ListRepair extends Component {
         }
 
         this.setState({ inputValue });
-
     }
 
     handleChange(e) {
-        this.setState({ inputValue: e.target.value});
+        const inputValue = e.target.value,
+            inputName = e.target.getAttribute('name'),
+            row = this.props.row;
+
+        this.setState({ inputValue });
+        this.props.onInputRepair(inputValue, inputName, row);
     }
 
     render() {
+        const row = this.props.row,
+            propertyKey = this.props.propertyKey;
 
         if (this.state.inputValue === null) {
             return <td></td>;
@@ -48,9 +54,11 @@ export default class ListRepair extends Component {
             <td>
                 <input
                     type="text"
+                    name={`${row}_${propertyKey}`}
                     value={this.state.inputValue}
                     onChange={this.handleChange}
-                    required/>
+                    required
+                />
             </td>
         )
     }

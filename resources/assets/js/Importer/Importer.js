@@ -18,6 +18,16 @@ class Importer extends Component {
         }
     }
 
+    handleRepairData(inputValue, inputName, tableRow) {
+        const listPosition = tableRow,
+            orderColumns = inputName.split('_'),
+            orderColumn = orderColumns[orderColumns.length - 1];
+        let list = this.state.list;
+
+        list[listPosition][orderColumn] = inputValue;
+        this.setState({ list });
+    }
+
     render() {
         return (
             <div className="container">
@@ -27,6 +37,7 @@ class Importer extends Component {
                 <List
                     list={this.state.list}
                     feedback={this.state.feedback}
+                    onRepair={(inputValue, inputName, tableRow) => {this.handleRepairData(inputValue, inputName, tableRow)}}
                 />
                 <SubmitOrders
                     orders={this.state.list}
