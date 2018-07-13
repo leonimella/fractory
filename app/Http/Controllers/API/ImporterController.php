@@ -26,14 +26,21 @@ class ImporterController extends Controller
         try {
             $fileData = $this->csvService->getCSVFileData($request->file('file'));
             return response()->json([
-                'data' => $fileData,
+                'data' => [
+                    'message' => 'Orders created successfully!',
+                    'status' => 'sucess',
+                    'orders' => $fileData
+                ],
                 'links' => [
                     'self' => $request->fullUrl(),
                 ],
             ], 201);
         } catch (\InvalidArgumentException $e) {
             return response()->json([
-                'error' => 'This type of file is not supported, please make sure you are uploading a .csv file',
+                'error' => [
+                    'message' => 'This type of file is not supported, please make sure you are uploading a .csv file',
+                    'status' => 'danger'
+                ],
                 'links' => [
                     'self' => $request->fullUrl(),
                 ],
