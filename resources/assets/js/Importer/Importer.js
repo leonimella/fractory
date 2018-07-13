@@ -12,7 +12,8 @@ class Importer extends Component {
         super(props);
 
         this.state = {
-            list: null
+            list: null,
+            feedback: null
         }
     }
 
@@ -20,9 +21,12 @@ class Importer extends Component {
         return (
             <div className="container">
                 <h1>Select a File to Upload</h1>
-                <FileUpload onFileSubmitted={(list) => {this.setState({ list })}} />
+                <FileUpload onFileSubmitted={(list, feedback) => {this.setState({ list, feedback })}} />
                 <List list={this.state.list}/>
-                <SubmitOrders orders={this.state.list}/>
+                <SubmitOrders
+                    orders={this.state.list}
+                    onOrdersSubmitted={(list, feedback) => {this.setState({ list, feedback })}}
+                />
             </div>
         )
     }

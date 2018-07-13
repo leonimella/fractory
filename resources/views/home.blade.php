@@ -13,6 +13,7 @@
     </head>
     <body>
         <div id="importer-app"></div>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/importer.js') }}"></script>
     </body>
 </html>

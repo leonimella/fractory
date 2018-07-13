@@ -10,10 +10,24 @@ export default class SubmitOrders extends Component{
 
         axios.post(url, { orders })
             .then((response) => {
-                console.log(response);
+                const data = response.data.data,
+                    feedback = {
+                        status: data.status,
+                        message: data.message
+                    },
+                    list = null;
+
+                this.props.onOrdersSubmitted(list, feedback);
             })
             .catch((error) => {
-                console.log(error);
+                const errorData = error.response.data.error,
+                    feedback = {
+                        status: errorData.status,
+                        message: errorData.message
+                    },
+                    list = errorData.orders;
+
+                this.props.onOrdersSubmitted(list, feedback);
             });
     }
 
