@@ -27,8 +27,8 @@ class ImporterController extends Controller
             $fileData = $this->csvService->getCSVFileData($request->file('file'));
             return response()->json([
                 'data' => [
-                    'message' => 'Orders created successfully!',
-                    'status' => 'sucess',
+                    'message' => 'File parsed successfully, here are your orders.',
+                    'status' => 'success',
                     'orders' => $fileData
                 ],
                 'links' => [

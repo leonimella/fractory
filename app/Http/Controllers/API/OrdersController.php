@@ -30,7 +30,7 @@ class OrdersController extends Controller
             return response()->json([
                 'data' => [
                     'message' => 'Orders created successfully!',
-                    'status' => 'sucess'
+                    'status' => 'success'
                 ],
                 'links' => [
                     'self' => $request->fullUrl(),
