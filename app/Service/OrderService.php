@@ -15,10 +15,13 @@ class OrderService {
      */
     public function createOrders($orders): array
     {
-        $newOrder = new Order;
         $ordersWithErrors = [];
 
         foreach ($orders as $order) {
+            $newOrder = new Order;
+            $order['bending'] = empty($order['bending']) || $order['bending'] == 'No' ? false : true;
+            $order['threading'] = empty($order['threading']) || $order['threading'] == 'No' ? false : true;
+
             try {
                 $newOrder->fill($order);
                 $newOrder->save();
