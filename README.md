@@ -21,7 +21,7 @@ In case of error in the third step, the wrong entries will be exhibit so he can 
 
 Clone the repository
 
-     git clone https://MrLeoni@bitbucket.org/MrLeoni/fractory.git fractory-csv-parser
+     git clone https://github.com/leonimella/fractory.git fractory-csv-parser
 
 Change to directory
 
