@@ -17,6 +17,10 @@ export default class SubmitOrders extends Component{
             orders = this.props.orders;
 
         this.setState({ sendingData: true });
+        this.props.onOrdersSubmitted([], {
+            status: 'warning',
+            message: 'Processing data, please wait'
+        });
 
         axios.post(url, { orders })
             .then((response) => {
