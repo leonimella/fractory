@@ -29,7 +29,7 @@ Change to directory
 
 Create a **.env** file from **.env.example**.
 
-Create **database.sqlite** file in *database* folder and copy the full path of the file and past after **DB_DATABASE=** inside your **.env** file.
+Create **database.sqlite** file in *database* folder and copy the full path of the file and paste after **DB_DATABASE=** inside your **.env** file.
 
 
 Run composer
