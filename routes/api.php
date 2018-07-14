@@ -11,5 +11,9 @@
 |
 */
 
+// Parse CSV
 Route::post('/importer/csv', 'API\ImporterController@handleCSVFile');
+
+// Orders
+Route::get('/orders', 'API\OrdersController@index');
 Route::post('/orders/create', 'API\OrdersController@store');

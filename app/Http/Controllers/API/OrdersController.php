@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Order;
 use App\Service\OrderService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,36 @@ class OrdersController extends Controller
     public function __construct(OrderService $orderService)
     {
         $this->orderService = $orderService;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
+    {
+        $orders = Order::latest()->get()->all();
+        $headers = [
+            'name' => 'Name',
+            'qty' => 'QTY',
+            'thickness' => 'Thickness',
+            'material' => 'Material',
+            'bending' => 'Bending',
+            'threading' => 'Threading'
+        ];
+
+        array_unshift($orders, $headers);
+
+        return response()->json([
+            'data' => [
+                'orders' => $orders
+            ],
+            'links' => [
+                'self' => $request->fullUrl(),
+            ],
+        ], 200);
     }
 
     /**

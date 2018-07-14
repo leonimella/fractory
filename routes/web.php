@@ -11,6 +11,12 @@
 |
 */
 
+// Home
 Route::get('/', function () {
     return view('home');
+});
+
+// Orders
+Route::get('/orders', function () {
+    return view('orders');
 });
