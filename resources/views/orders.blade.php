@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
     </head>
     <body>
-        <div id="importer-app"></div>
+        <div id="orders-index"></div>
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/importer.js') }}"></script>
+        <script src="{{ asset('js/orders.js') }}"></script>
     </body>
 </html>

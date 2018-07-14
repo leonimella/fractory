@@ -34,6 +34,7 @@ class Importer extends Component {
                 <header>
                     <h1>CSV Parser</h1>
                     <p>Select a .csv file and hit the <b>Send</b> button. We will parse the file and show the orders contained in the file.</p>
+                    <p>To check the uploaded orders <a href="/orders" title="Orders index">click here</a></p>
                 </header>
                 <div className="row justify-content-md-center">
                     <div className="col-md-6">

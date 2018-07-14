@@ -8,11 +8,21 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Custom
+body {
+
+    .btn-success {
+        background-color: #65d47e;
+        border-color: #65d47e;
+    }
+
+}
+
 header {
 
     padding: 20px;
 
-    h1,p {
+    h1, p {
         text-align: center;
     }
 
@@ -34,7 +44,10 @@ header {
     margin-top: 2%;
 }
 
-body .btn-success {
-    background-color: #65d47e;
-    border-color: #65d47e;
+.input-group {
+
+    .custom-file-label {
+        z-index: 4;
+    }
+
 }

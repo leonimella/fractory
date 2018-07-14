@@ -13,4 +13,5 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
-    .react('resources/assets/js/Importer/Importer.js', 'public/js/importer.js');
+    .react('resources/assets/js/Importer/Importer.js', 'public/js/importer.js')
+    .react('resources/assets/js/Orders/Orders.js', 'public/js/orders.js');
