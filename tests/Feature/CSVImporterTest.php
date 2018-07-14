@@ -27,7 +27,7 @@ class CSVImporterTest extends TestCase
      *
      * @return void
      */
-    public function testCSVImportFeature()
+    public function testCSVParse()
     {
         Storage::fake('imported');
         $response = $this->json('POST', '/api/importer/csv', [
@@ -49,7 +49,7 @@ class CSVImporterTest extends TestCase
      */
     public function testOrdersCreationRoute()
     {
-        $data = [
+        $validData = [
             [
                 'bending' => '',
                 'material' => 'S235',
@@ -76,8 +76,21 @@ class CSVImporterTest extends TestCase
             ]
         ];
 
-        $response = $this->json('POST', '/api/order', $data);
+        $invalidData = [
+            [
+                'thickness' => '12',
+                'threading' => 'Yes'
+            ]
+        ];
+
+        $response = $this->json('POST', '/api/orders/create', [
+            'orders' => $validData
+        ]);
         $response->assertStatus(201);
-        $this->assertDatabaseHas('orders', $data);
+
+        $response = $this->json('POST', '/api/orders/create', [
+            'orders' => $invalidData
+        ]);
+        $response->assertStatus(400);
     }
 }
