@@ -23,7 +23,7 @@ You can use the **example.csv** file, for test the app, locate in app root direc
 
 Clone the repository
 
-     git clone https://MrLeoni@bitbucket.org/MrLeoni/fractory.git fractory-csv-parser
+     git clone https://github.com/leonimella/fractory.git fractory-csv-parser
 
 Change to directory
 
@@ -31,7 +31,7 @@ Change to directory
 
 Create a **.env** file from **.env.example**.
 
-Create **database.sqlite** file in *database* folder and copy the full path of the file and past after **DB_DATABASE=** inside your **.env** file.
+Create **database.sqlite** file in *database* folder and copy the full path of the file and paste after **DB_DATABASE=** inside your **.env** file.
 
 
 Run composer
