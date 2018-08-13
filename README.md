@@ -12,7 +12,7 @@ This application work in three easy steps:
 
 In case of error in the third step, the wrong entries will be exhibit so he can make corrections and try to send the data again. Or he can update a hole new file.
 
-You can use the **example.csv** file, for test the app, locate in app root directory.
+You can use the **example.csv** file, for test the app, locate in app's root directory.
 
 ## Routes
 
